@@ -49,6 +49,9 @@ export default function Home() {
           >
             Read our docs
           </a>
+          <a className="border rounded-full border-gray-100 px-2 py-2 min-w-[100px] text-center">
+            Hello
+          </a>
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">

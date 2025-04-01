@@ -1,0 +1,26 @@
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgvector(map: "vector", schema: "extensions")]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  email        String         @unique
+  WardrobeItem WardrobeItem[]
+}
+
+model WardrobeItem {
+  id        Int                         @id @default(autoincrement())
+  userId    Int
+  type      String
+  color     String
+  imageUrl  String
+  embedding Unsupported("vector(512)")? // Map VECTOR(512) to array of floats
+  user      User                        @relation(fields: [userId], references: [id])
+}
